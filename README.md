@@ -9,7 +9,10 @@ The pipeline uses the following variables:
 - `SSH_HOST`: The hostname of the remote server.
 - `SSH_USER`: The username to use for the SSH connection.
 
-These variables are prompted for when the script starts.
+When the script initiates, it prompts for these variables.
+
+Additionally, the SSH_PRIVATE_KEY variable needs to be defined for successful execution of the script.
+
 
 ## Stages
 
