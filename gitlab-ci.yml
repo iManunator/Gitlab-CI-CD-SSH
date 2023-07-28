@@ -1,0 +1,42 @@
+# This block is used to ask for variables when the script is started
+variables:
+  # Variable for the hostname
+  SSH_HOST:
+    value: "hostname"
+    description: "Enter the hostname of the Computer"
+
+  # Variable for the SSH username
+  SSH_USER:
+    value: "username"
+    description: "Enter the username for the ssh connection"
+
+# Define the stages of the pipeline
+stages:
+  - deploy
+
+# Define the job for the deploy stage
+deploy:
+  # Use the latest version of the alpine image
+  image: alpine:latest
+  stage: deploy
+  # This job will only run when changes are committed in the api, web or triggers branches
+  only:
+    - api
+    - web
+    - triggers
+
+  # Uncomment the following lines if you want to assign a specific runner for this job
+  # tags:
+  #   - <runner_tag>
+
+  # Commands that should run before all jobs
+  before_script:
+    - . scripts/enable_ssh.sh
+
+  # The main set of commands that the job will execute
+  script:
+    # Uncomment the following line to run your script
+    # - . <path to script>
+
+  # Commands that should be run after all jobs
+  after_script:
